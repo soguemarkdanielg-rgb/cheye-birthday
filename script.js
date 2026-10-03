@@ -347,8 +347,10 @@ const noBtn = document.getElementById("noBtn");
 const euphoriaAudio = document.getElementById("euphoriaAudio");
 const finalMessage = document.getElementById("finalMessage");
 
-// YES button
 yesBtn.addEventListener("click", function() {
+
+    // Hide NO button after clicking YES
+    noBtn.style.display = "none";
 
     alert("YAY! I knew you'd say yes! 💕 It's a date, Cheyeanne! 🥰");
 
@@ -362,8 +364,6 @@ yesBtn.addEventListener("click", function() {
 
 });
 
-
-// NO button - runs away
 noBtn.addEventListener("mouseenter", function() {
 
     const maxX = window.innerWidth - noBtn.offsetWidth - 30;
