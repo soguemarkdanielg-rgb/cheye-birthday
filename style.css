@@ -582,6 +582,72 @@ footer {
     padding-bottom: 20px;
 }
 
+.date-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    padding: 20px;
+}
+
+.date-card {
+    width: min(600px, 90%);
+    padding: 40px 30px;
+    text-align: center;
+    background: rgba(255, 248, 238, 0.95);
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    color: #6b3e4f;
+}
+
+.date-card .heart-icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.date-card h2 {
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.date-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.date-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.date-buttons button {
+    border: none;
+    padding: 13px 28px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#yesBtn {
+    background: #e89aaa;
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.08);
+}
+
+#noBtn {
+    background: #ddd;
+    color: #555;
+}
+
 @media (max-width: 600px) {
     .container {
         padding-top: 40px;
@@ -657,4 +723,56 @@ footer {
 
 .yes-message {
     color: #d94b72;
+}
+
+
+/* Keep the date card and final message stacked */
+
+.date-section {
+    display: block;
+}
+
+.date-card {
+    margin: 0 auto;
+}
+
+.final-message {
+    display: block;
+    width: min(600px, 90%);
+    margin: 30px auto 0;
+}
+
+.final-message {
+    display: none;
+    width: min(600px, 90%);
+    margin: 35px auto 0;
+    padding: 35px 40px;
+    background: rgba(255, 248, 238, 0.97);
+    border-radius: 25px;
+    color: #7a4055;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    line-height: 1.7;
+}
+
+.final-message.show {
+    display: block;
+}
+
+.final-message h2 {
+    margin: 0 0 20px;
+    color: #d94f73;
+    font-size: 30px;
+}
+
+.final-message p {
+    margin: 0 auto 18px;
+    font-size: 16px;
+    max-width: 500px;
+}
+
+.final-message .final-love {
+    margin-top: 25px;
+    font-weight: bold;
+    color: #d94f73;
 }

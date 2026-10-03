@@ -342,3 +342,38 @@ window.addEventListener("load", () => {
     }, 1500);
 
 });
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const euphoriaAudio = document.getElementById("euphoriaAudio");
+const finalMessage = document.getElementById("finalMessage");
+
+// YES button
+yesBtn.addEventListener("click", function() {
+
+    alert("YAY! I knew you'd say yes! 💕 It's a date, Cheyeanne! 🥰");
+
+    euphoriaAudio.currentTime = 0;
+
+    euphoriaAudio.play().catch(function(error) {
+        console.log("Audio could not play:", error);
+    });
+
+    finalMessage.classList.add("show");
+
+});
+
+
+// NO button - runs away
+noBtn.addEventListener("mouseenter", function() {
+
+    const maxX = window.innerWidth - noBtn.offsetWidth - 30;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 30;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+
+});
