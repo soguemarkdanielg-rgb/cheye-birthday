@@ -398,21 +398,33 @@ const finalMessage =
     document.getElementById("finalMessage");
 
 
+// YES / NO DATE BUTTONS
+
+const yesBtn =
+    document.getElementById("yesBtn");
+
+const noBtn =
+    document.getElementById("noBtn");
+
+const euphoriaAudio =
+    document.getElementById("euphoriaAudio");
+
+const finalMessage =
+    document.getElementById("finalMessage");
+
+
 // YES BUTTON
 
 yesBtn.addEventListener("click", function() {
 
-    // Hide NO button after clicking YES
+    // Hide NO button
     noBtn.style.display = "none";
 
+    // Hide YES button
+    yesBtn.style.display = "none";
 
-    alert(
-        "YAY! I knew you'd say yes! 💕 It's a date, Cheyeanne! 🥰"
-    );
-
-
+    // Play Euphoria
     euphoriaAudio.currentTime = 0;
-
 
     euphoriaAudio.play().catch(function(error) {
 
@@ -423,7 +435,8 @@ yesBtn.addEventListener("click", function() {
 
     });
 
-
+    // Show final message
+    finalMessage.style.display = "block";
     finalMessage.classList.add("show");
 
 });
@@ -438,20 +451,16 @@ noBtn.addEventListener("mouseenter", function() {
         noBtn.offsetWidth -
         30;
 
-
     const maxY =
         window.innerHeight -
         noBtn.offsetHeight -
         30;
 
-
     const randomX =
         Math.random() * maxX;
 
-
     const randomY =
         Math.random() * maxY;
-
 
     noBtn.style.position = "fixed";
 
