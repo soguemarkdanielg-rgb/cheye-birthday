@@ -83,12 +83,14 @@ function showWishMessage() {
         "✨ Make a wish, Cheyeanne! ✨";
 
     instruction.style.color = "#fff";
-
     instruction.style.fontSize = "18px";
-
     instruction.style.fontWeight = "bold";
 }
 
+
+/* =========================
+   SURPRISE / LETTER
+========================= */
 
 const surpriseBtn =
     document.getElementById("surpriseBtn");
@@ -122,6 +124,10 @@ surpriseBtn.addEventListener("click", () => {
 });
 
 
+/* =========================
+   FLOATING HEARTS
+========================= */
+
 const heartContainer =
     document.querySelector(".hearts");
 
@@ -134,6 +140,7 @@ const heartSymbols = [
     "💓",
     "💞"
 ];
+
 
 function createHeart() {
 
@@ -170,10 +177,12 @@ function createHeart() {
 }
 
 
-/* Create hearts continuously */
-
 setInterval(createHeart, 800);
 
+
+/* =========================
+   CONFETTI
+========================= */
 
 function createConfetti() {
 
@@ -236,6 +245,10 @@ function getRandomColor() {
 }
 
 
+/* =========================
+   FIREWORKS
+========================= */
+
 function createFireworks() {
 
     for (let i = 0; i < 6; i++) {
@@ -292,7 +305,8 @@ function createFirework(x, y) {
         particle.style.pointerEvents =
             "none";
 
-        particle.style.zIndex = "200";
+        particle.style.zIndex =
+            "200";
 
         document.body.appendChild(particle);
 
@@ -333,6 +347,10 @@ function createFirework(x, y) {
 }
 
 
+/* =========================
+   PAGE LOAD
+========================= */
+
 window.addEventListener("load", () => {
 
     setTimeout(() => {
@@ -342,38 +360,104 @@ window.addEventListener("load", () => {
     }, 1500);
 
 });
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-const euphoriaAudio = document.getElementById("euphoriaAudio");
-const finalMessage = document.getElementById("finalMessage");
+
+
+/* =========================
+   DATE SECTION
+========================= */
+
+const yesBtn =
+    document.getElementById("yesBtn");
+
+const noBtn =
+    document.getElementById("noBtn");
+
+const euphoriaAudio =
+    document.getElementById("euphoriaAudio");
+
+const finalMessage =
+    document.getElementById("finalMessage");
+
+const flowerSurprise =
+    document.getElementById("flowerSurprise");
+
+const openFinalBtn =
+    document.getElementById("openFinalBtn");
+
+
+/* =========================
+   YES BUTTON
+========================= */
 
 yesBtn.addEventListener("click", function() {
 
-    // Hide NO button after clicking YES
+    // Hide NO
     noBtn.style.display = "none";
 
-    alert("YAY! I knew you'd say yes! 💕 It's a date, Cheyeanne! 🥰");
+    // Hide YES
+    yesBtn.style.display = "none";
 
-    euphoriaAudio.currentTime = 0;
-
-    euphoriaAudio.play().catch(function(error) {
-        console.log("Audio could not play:", error);
-    });
-
-    finalMessage.classList.add("show");
+    // Show flower surprise
+    flowerSurprise.classList.add("show");
 
 });
 
+
+/* =========================
+   NO BUTTON
+========================= */
+
 noBtn.addEventListener("mouseenter", function() {
 
-    const maxX = window.innerWidth - noBtn.offsetWidth - 30;
-    const maxY = window.innerHeight - noBtn.offsetHeight - 30;
+    const maxX =
+        window.innerWidth -
+        noBtn.offsetWidth -
+        30;
 
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
+    const maxY =
+        window.innerHeight -
+        noBtn.offsetHeight -
+        30;
+
+    const randomX =
+        Math.random() * maxX;
+
+    const randomY =
+        Math.random() * maxY;
 
     noBtn.style.position = "fixed";
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
+
+    noBtn.style.left =
+        randomX + "px";
+
+    noBtn.style.top =
+        randomY + "px";
+
+});
+
+
+/* =========================
+   OPEN FLOWER SURPRISE
+========================= */
+
+openFinalBtn.addEventListener("click", function() {
+
+    // Hide flower surprise
+    flowerSurprise.style.display = "none";
+
+    // Show final message
+    finalMessage.classList.add("show");
+
+    // Start Euphoria
+    euphoriaAudio.currentTime = 0;
+
+    euphoriaAudio.play().catch(function(error) {
+
+        console.log(
+            "Audio could not play:",
+            error
+        );
+
+    });
 
 });
