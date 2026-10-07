@@ -398,21 +398,6 @@ const finalMessage =
     document.getElementById("finalMessage");
 
 
-// YES / NO DATE BUTTONS
-
-const yesBtn =
-    document.getElementById("yesBtn");
-
-const noBtn =
-    document.getElementById("noBtn");
-
-const euphoriaAudio =
-    document.getElementById("euphoriaAudio");
-
-const finalMessage =
-    document.getElementById("finalMessage");
-
-
 // YES BUTTON
 
 yesBtn.addEventListener("click", function() {
