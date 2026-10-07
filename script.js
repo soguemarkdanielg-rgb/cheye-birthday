@@ -1,3 +1,7 @@
+/* =========================
+   CANDLES
+========================= */
+
 const candles = document.querySelectorAll(".candle");
 
 let candlesOut = 0;
@@ -19,7 +23,6 @@ candles.forEach(candle => {
 
         createSmallSmoke(candle);
 
-
         // When all candles are out
         if (candlesOut === candles.length) {
 
@@ -38,6 +41,10 @@ candles.forEach(candle => {
 });
 
 
+/* =========================
+   SMALL SMOKE
+========================= */
+
 function createSmallSmoke(candle) {
 
     const smoke = document.createElement("div");
@@ -51,13 +58,11 @@ function createSmallSmoke(candle) {
     smoke.style.top = "-50px";
     smoke.style.pointerEvents = "none";
 
-
     smoke.animate(
         [{
                 transform: "translateY(0) scale(1)",
                 opacity: 0.5
             },
-
             {
                 transform: "translateY(-50px) scale(2)",
                 opacity: 0
@@ -68,9 +73,7 @@ function createSmallSmoke(candle) {
         }
     );
 
-
     candle.appendChild(smoke);
-
 
     setTimeout(() => {
         smoke.remove();
@@ -79,9 +82,18 @@ function createSmallSmoke(candle) {
 }
 
 
+/* =========================
+   WISH MESSAGE
+========================= */
+
 function showWishMessage() {
 
-    const instruction = document.querySelector(".instruction");
+    const instruction =
+        document.querySelector(".instruction");
+
+    if (!instruction) {
+        return;
+    }
 
     instruction.innerHTML =
         "✨ Make a wish, Cheyeanne! ✨";
@@ -93,41 +105,49 @@ function showWishMessage() {
 }
 
 
-// SURPRISE BUTTON
+/* =========================
+   SURPRISE BUTTON
+========================= */
 
-const surpriseBtn = document.getElementById("surpriseBtn");
-const messageCard = document.getElementById("messageCard");
+const surpriseBtn =
+    document.getElementById("surpriseBtn");
+
+const messageCard =
+    document.getElementById("messageCard");
+
+if (surpriseBtn && messageCard) {
+
+    surpriseBtn.addEventListener("click", () => {
+
+        messageCard.classList.toggle("show");
+
+        if (messageCard.classList.contains("show")) {
+
+            surpriseBtn.innerHTML =
+                "💖 Hide Your Surprise";
+
+            createConfetti();
+
+            messageCard.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        } else {
+
+            surpriseBtn.innerHTML =
+                "🎁 Open Your Surprise";
+
+        }
+
+    });
+
+}
 
 
-surpriseBtn.addEventListener("click", () => {
-
-    messageCard.classList.toggle("show");
-
-
-    if (messageCard.classList.contains("show")) {
-
-        surpriseBtn.innerHTML =
-            "💖 Hide Your Surprise";
-
-        createConfetti();
-
-
-        messageCard.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-
-    } else {
-
-        surpriseBtn.innerHTML =
-            "🎁 Open Your Surprise";
-
-    }
-
-});
-
-
-// FLOATING HEARTS
+/* =========================
+   FLOATING HEARTS
+========================= */
 
 const heartContainer =
     document.querySelector(".hearts");
@@ -145,100 +165,93 @@ const heartSymbols = [
 
 function createHeart() {
 
-    const heart = document.createElement("div");
+    if (!heartContainer) {
+        return;
+    }
+
+    const heart =
+        document.createElement("div");
 
     heart.classList.add("heart");
 
     heart.innerHTML =
         heartSymbols[
-            Math.floor(Math.random() * heartSymbols.length)
+            Math.floor(
+                Math.random() *
+                heartSymbols.length
+            )
         ];
-
 
     heart.style.left =
         Math.random() * 100 + "%";
 
-
     heart.style.fontSize =
         Math.random() * 20 + 12 + "px";
-
 
     const duration =
         Math.random() * 5 + 5;
 
-
     heart.style.animationDuration =
         duration + "s";
 
-
     heartContainer.appendChild(heart);
 
-
     setTimeout(() => {
-
         heart.remove();
-
     }, duration * 1000);
 
 }
 
-
 setInterval(createHeart, 800);
 
 
-// CONFETTI
+/* =========================
+   CONFETTI
+========================= */
 
 function createConfetti() {
 
     const amount = 100;
-
 
     for (let i = 0; i < amount; i++) {
 
         const confetti =
             document.createElement("div");
 
-
         confetti.classList.add("confetti");
-
 
         confetti.style.left =
             Math.random() * 100 + "vw";
 
-
         confetti.style.width =
             Math.random() * 8 + 5 + "px";
-
 
         confetti.style.height =
             Math.random() * 15 + 8 + "px";
 
-
         confetti.style.background =
             getRandomColor();
-
 
         confetti.style.transform =
             `rotate(${Math.random() * 360}deg)`;
 
-
         confetti.style.animationDuration =
             Math.random() * 2 + 2 + "s";
 
-
         document.body.appendChild(confetti);
 
-
         setTimeout(() => {
-
             confetti.remove();
-
         }, 4000);
 
     }
 
 }
 
+
+/* =========================
+   RANDOM COLORS
+========================= */
 
 function getRandomColor() {
 
@@ -252,15 +265,18 @@ function getRandomColor() {
         "#7bdff2"
     ];
 
-
     return colors[
-        Math.floor(Math.random() * colors.length)
+        Math.floor(
+            Math.random() * colors.length
+        )
     ];
 
 }
 
 
-// FIREWORKS
+/* =========================
+   FIREWORKS
+========================= */
 
 function createFireworks() {
 
@@ -269,14 +285,13 @@ function createFireworks() {
         setTimeout(() => {
 
             const x =
-                Math.random() * window.innerWidth;
-
+                Math.random() *
+                window.innerWidth;
 
             const y =
                 Math.random() *
                 window.innerHeight *
                 0.6;
-
 
             createFirework(x, y);
 
@@ -291,78 +306,55 @@ function createFirework(x, y) {
 
     const particles = 30;
 
-
     for (let i = 0; i < particles; i++) {
 
         const particle =
             document.createElement("div");
 
-
         particle.style.position = "fixed";
-
         particle.style.left = x + "px";
-
         particle.style.top = y + "px";
-
         particle.style.width = "5px";
-
         particle.style.height = "5px";
-
         particle.style.borderRadius = "50%";
-
         particle.style.background =
             getRandomColor();
-
         particle.style.pointerEvents = "none";
-
         particle.style.zIndex = "200";
-
 
         document.body.appendChild(particle);
 
-
         const angle =
-            (Math.PI * 2 * i) / particles;
-
+            (Math.PI * 2 * i) /
+            particles;
 
         const distance =
             Math.random() * 100 + 50;
 
-
         const targetX =
             Math.cos(angle) * distance;
-
 
         const targetY =
             Math.sin(angle) * distance;
 
-
         particle.animate(
-
             [{
                     transform: "translate(0, 0)",
                     opacity: 1
                 },
-
                 {
                     transform: `translate(${targetX}px, ${targetY}px)`,
                     opacity: 0
                 }
-            ],
-
-            {
+            ], {
                 duration: Math.random() * 700 + 700,
 
                 easing: "cubic-bezier(.1,.8,.2,1)"
             }
-
         );
 
-
         setTimeout(() => {
-
             particle.remove();
-
         }, 1500);
 
     }
@@ -370,20 +362,22 @@ function createFirework(x, y) {
 }
 
 
-// INITIAL CONFETTI
+/* =========================
+   INITIAL CONFETTI
+========================= */
 
 window.addEventListener("load", () => {
 
     setTimeout(() => {
-
         createConfetti();
-
     }, 1500);
 
 });
 
 
-// YES / NO DATE BUTTONS
+/* =========================
+   YES / NO DATE BUTTONS
+========================= */
 
 const yesBtn =
     document.getElementById("yesBtn");
@@ -398,54 +392,91 @@ const finalMessage =
     document.getElementById("finalMessage");
 
 
-// YES BUTTON
+/* =========================
+   YES BUTTON
+========================= */
 
-yesBtn.addEventListener("click", function() {
+if (yesBtn) {
 
-    // Hide NO button
-    noBtn.style.display = "none";
+    yesBtn.addEventListener("click", function() {
 
-    // Hide YES button
-    yesBtn.style.display = "none";
+        // Hide NO button
+        if (noBtn) {
+            noBtn.style.display = "none";
+        }
 
-    // Play Euphoria
-    euphoriaAudio.currentTime = 0;
+        // Hide YES button
+        yesBtn.style.display = "none";
 
-    euphoriaAudio.play().catch(function(error) {
+        // Play Euphoria
+        if (euphoriaAudio) {
 
-        console.log(
-            "Audio could not play:",
-            error
-        );
+            euphoriaAudio.currentTime = 0;
+
+            euphoriaAudio.play().catch(function(error) {
+
+                console.log(
+                    "Audio could not play:",
+                    error
+                );
+
+            });
+
+        }
+
+        // Show final message
+        if (finalMessage) {
+
+            finalMessage.style.display = "block";
+
+            finalMessage.classList.add("show");
+
+        }
 
     });
 
-    // Show final message
-    finalMessage.style.display = "block";
-    finalMessage.classList.add("show");
-
-});
+}
 
 
-// MOVING NO BUTTON
+/* =========================
+   MOVING NO BUTTON
+========================= */
 
-noBtn.addEventListener("mouseenter", function() {
+function moveNoButton() {
+
+    if (!noBtn) {
+        return;
+    }
+
+    const padding = 20;
+
+    const buttonWidth =
+        noBtn.offsetWidth;
+
+    const buttonHeight =
+        noBtn.offsetHeight;
 
     const maxX =
         window.innerWidth -
-        noBtn.offsetWidth -
-        30;
+        buttonWidth -
+        padding;
 
     const maxY =
         window.innerHeight -
-        noBtn.offsetHeight -
-        30;
+        buttonHeight -
+        padding;
 
     const randomX =
-        Math.random() * maxX;
+        Math.max(
+            padding,
+            Math.random() * maxX
+        );
 
     const randomY =
-        Math.random() * maxY;
+        Math.max(
+            padding,
+            Math.random() * maxY
+        );
 
     noBtn.style.position = "fixed";
 
@@ -455,4 +486,30 @@ noBtn.addEventListener("mouseenter", function() {
     noBtn.style.top =
         randomY + "px";
 
-});
+}
+
+
+/* Desktop */
+
+if (noBtn) {
+
+    noBtn.addEventListener(
+        "mouseenter",
+        moveNoButton
+    );
+
+
+    /* Mobile */
+
+    noBtn.addEventListener(
+        "touchstart",
+        function(event) {
+
+            event.preventDefault();
+
+            moveNoButton();
+
+        }
+    );
+
+}
