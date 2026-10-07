@@ -436,28 +436,6 @@ noBtn.addEventListener("mouseenter", function() {
 });
 
 
-/* =========================
-   OPEN FLOWER SURPRISE
-========================= */
 
-openFinalBtn.addEventListener("click", function() {
-
-    // Hide flower surprise
-    flowerSurprise.style.display = "none";
-
-    // Show final message
-    finalMessage.classList.add("show");
-
-    // Start Euphoria
-    euphoriaAudio.currentTime = 0;
-
-    euphoriaAudio.play().catch(function(error) {
-
-        console.log(
-            "Audio could not play:",
-            error
-        );
-
-    });
 
 });
