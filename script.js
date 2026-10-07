@@ -19,15 +19,14 @@ candles.forEach(candle => {
 
         createSmallSmoke(candle);
 
+
         // When all candles are out
         if (candlesOut === candles.length) {
 
             setTimeout(() => {
 
                 createConfetti();
-
                 createFireworks();
-
                 showWishMessage();
 
             }, 500);
@@ -52,11 +51,13 @@ function createSmallSmoke(candle) {
     smoke.style.top = "-50px";
     smoke.style.pointerEvents = "none";
 
+
     smoke.animate(
         [{
                 transform: "translateY(0) scale(1)",
                 opacity: 0.5
             },
+
             {
                 transform: "translateY(-50px) scale(2)",
                 opacity: 0
@@ -67,11 +68,14 @@ function createSmallSmoke(candle) {
         }
     );
 
+
     candle.appendChild(smoke);
+
 
     setTimeout(() => {
         smoke.remove();
     }, 1200);
+
 }
 
 
@@ -85,22 +89,20 @@ function showWishMessage() {
     instruction.style.color = "#fff";
     instruction.style.fontSize = "18px";
     instruction.style.fontWeight = "bold";
+
 }
 
 
-/* =========================
-   SURPRISE / LETTER
-========================= */
+// SURPRISE BUTTON
 
-const surpriseBtn =
-    document.getElementById("surpriseBtn");
+const surpriseBtn = document.getElementById("surpriseBtn");
+const messageCard = document.getElementById("messageCard");
 
-const messageCard =
-    document.getElementById("messageCard");
 
 surpriseBtn.addEventListener("click", () => {
 
     messageCard.classList.toggle("show");
+
 
     if (messageCard.classList.contains("show")) {
 
@@ -108,6 +110,7 @@ surpriseBtn.addEventListener("click", () => {
             "💖 Hide Your Surprise";
 
         createConfetti();
+
 
         messageCard.scrollIntoView({
             behavior: "smooth",
@@ -124,9 +127,7 @@ surpriseBtn.addEventListener("click", () => {
 });
 
 
-/* =========================
-   FLOATING HEARTS
-========================= */
+// FLOATING HEARTS
 
 const heartContainer =
     document.querySelector(".hearts");
@@ -144,79 +145,94 @@ const heartSymbols = [
 
 function createHeart() {
 
-    const heart =
-        document.createElement("div");
+    const heart = document.createElement("div");
 
     heart.classList.add("heart");
 
     heart.innerHTML =
         heartSymbols[
-            Math.floor(
-                Math.random() *
-                heartSymbols.length
-            )
+            Math.floor(Math.random() * heartSymbols.length)
         ];
+
 
     heart.style.left =
         Math.random() * 100 + "%";
 
+
     heart.style.fontSize =
         Math.random() * 20 + 12 + "px";
+
 
     const duration =
         Math.random() * 5 + 5;
 
+
     heart.style.animationDuration =
         duration + "s";
 
+
     heartContainer.appendChild(heart);
 
+
     setTimeout(() => {
+
         heart.remove();
+
     }, duration * 1000);
+
 }
 
 
 setInterval(createHeart, 800);
 
 
-/* =========================
-   CONFETTI
-========================= */
+// CONFETTI
 
 function createConfetti() {
 
     const amount = 100;
+
 
     for (let i = 0; i < amount; i++) {
 
         const confetti =
             document.createElement("div");
 
+
         confetti.classList.add("confetti");
+
 
         confetti.style.left =
             Math.random() * 100 + "vw";
 
+
         confetti.style.width =
             Math.random() * 8 + 5 + "px";
+
 
         confetti.style.height =
             Math.random() * 15 + 8 + "px";
 
+
         confetti.style.background =
             getRandomColor();
+
 
         confetti.style.transform =
             `rotate(${Math.random() * 360}deg)`;
 
+
         confetti.style.animationDuration =
             Math.random() * 2 + 2 + "s";
 
+
         document.body.appendChild(confetti);
 
+
         setTimeout(() => {
+
             confetti.remove();
+
         }, 4000);
 
     }
@@ -236,18 +252,15 @@ function getRandomColor() {
         "#7bdff2"
     ];
 
+
     return colors[
-        Math.floor(
-            Math.random() *
-            colors.length
-        )
+        Math.floor(Math.random() * colors.length)
     ];
+
 }
 
 
-/* =========================
-   FIREWORKS
-========================= */
+// FIREWORKS
 
 function createFireworks() {
 
@@ -258,10 +271,12 @@ function createFireworks() {
             const x =
                 Math.random() * window.innerWidth;
 
+
             const y =
                 Math.random() *
                 window.innerHeight *
                 0.6;
+
 
             createFirework(x, y);
 
@@ -276,70 +291,78 @@ function createFirework(x, y) {
 
     const particles = 30;
 
+
     for (let i = 0; i < particles; i++) {
 
         const particle =
             document.createElement("div");
 
-        particle.style.position =
-            "fixed";
 
-        particle.style.left =
-            x + "px";
+        particle.style.position = "fixed";
 
-        particle.style.top =
-            y + "px";
+        particle.style.left = x + "px";
 
-        particle.style.width =
-            "5px";
+        particle.style.top = y + "px";
 
-        particle.style.height =
-            "5px";
+        particle.style.width = "5px";
 
-        particle.style.borderRadius =
-            "50%";
+        particle.style.height = "5px";
+
+        particle.style.borderRadius = "50%";
 
         particle.style.background =
             getRandomColor();
 
-        particle.style.pointerEvents =
-            "none";
+        particle.style.pointerEvents = "none";
 
-        particle.style.zIndex =
-            "200";
+        particle.style.zIndex = "200";
+
 
         document.body.appendChild(particle);
+
 
         const angle =
             (Math.PI * 2 * i) / particles;
 
+
         const distance =
             Math.random() * 100 + 50;
+
 
         const targetX =
             Math.cos(angle) * distance;
 
+
         const targetY =
             Math.sin(angle) * distance;
 
+
         particle.animate(
+
             [{
                     transform: "translate(0, 0)",
                     opacity: 1
                 },
+
                 {
                     transform: `translate(${targetX}px, ${targetY}px)`,
                     opacity: 0
                 }
-            ], {
+            ],
+
+            {
                 duration: Math.random() * 700 + 700,
 
                 easing: "cubic-bezier(.1,.8,.2,1)"
             }
+
         );
 
+
         setTimeout(() => {
+
             particle.remove();
+
         }, 1500);
 
     }
@@ -347,9 +370,7 @@ function createFirework(x, y) {
 }
 
 
-/* =========================
-   PAGE LOAD
-========================= */
+// INITIAL CONFETTI
 
 window.addEventListener("load", () => {
 
@@ -362,9 +383,7 @@ window.addEventListener("load", () => {
 });
 
 
-/* =========================
-   DATE SECTION
-========================= */
+// YES / NO DATE BUTTONS
 
 const yesBtn =
     document.getElementById("yesBtn");
@@ -378,34 +397,39 @@ const euphoriaAudio =
 const finalMessage =
     document.getElementById("finalMessage");
 
-const flowerSurprise =
-    document.getElementById("flowerSurprise");
 
-const openFinalBtn =
-    document.getElementById("openFinalBtn");
-
-
-/* =========================
-   YES BUTTON
-========================= */
+// YES BUTTON
 
 yesBtn.addEventListener("click", function() {
 
-    // Hide NO
+    // Hide NO button after clicking YES
     noBtn.style.display = "none";
 
-    // Hide YES
-    yesBtn.style.display = "none";
 
-    // Show flower surprise
-    flowerSurprise.classList.add("show");
+    alert(
+        "YAY! I knew you'd say yes! 💕 It's a date, Cheyeanne! 🥰"
+    );
+
+
+    euphoriaAudio.currentTime = 0;
+
+
+    euphoriaAudio.play().catch(function(error) {
+
+        console.log(
+            "Audio could not play:",
+            error
+        );
+
+    });
+
+
+    finalMessage.classList.add("show");
 
 });
 
 
-/* =========================
-   NO BUTTON
-========================= */
+// MOVING NO BUTTON
 
 noBtn.addEventListener("mouseenter", function() {
 
@@ -414,16 +438,20 @@ noBtn.addEventListener("mouseenter", function() {
         noBtn.offsetWidth -
         30;
 
+
     const maxY =
         window.innerHeight -
         noBtn.offsetHeight -
         30;
 
+
     const randomX =
         Math.random() * maxX;
 
+
     const randomY =
         Math.random() * maxY;
+
 
     noBtn.style.position = "fixed";
 
